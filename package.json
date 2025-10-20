@@ -19,6 +19,7 @@
     "react-native": "0.73.6",
     "react-native-google-places-autocomplete": "^2.5.7",
     "react-native-maps": "^1.26.17",
+    "react-native-maps-directions": "^1.9.0",
     "react-native-safe-area-context": "^5.6.1",
     "react-native-screens": "^4.17.1",
     "react-redux": "^9.1.1",
