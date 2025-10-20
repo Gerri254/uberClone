@@ -4,8 +4,14 @@ import {
     View,
     SafeAreaView,
     TouchableOpacity,
+    StyleSheet,
+    Text,
+    View,
+    SafeAreaView,
+    TouchableOpacity,
     FlatList,
     Image,
+    Alert,
   } from "react-native";
   import React, { useState } from "react";
   import tw from "twrnc";
@@ -94,6 +100,13 @@ import {
         <View style={tw`mt-auto border-t border-gray-200`}>
           <TouchableOpacity
             disabled={!selected}
+            onPress={() => {
+              Alert.alert(
+                "Ride Confirmed",
+                `You have selected ${selected?.title}. Your ride is on its way.`,
+                [{ text: "OK" }]
+              );
+            }}
             style={tw`bg-black py-3 m-3 ${!selected && "bg-gray-300"}`}
           >
             <Text style={tw`text-center text-white text-xl`}>

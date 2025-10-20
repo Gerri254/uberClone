@@ -7,9 +7,32 @@ import { GOOGLE_MAPS_APIKEY } from '@env';
 import { useDispatch } from 'react-redux';
 import { setDestination, setOrigin } from '../slices/navSlice';
 import NavFavourites from '../components/NavFavourites';
+import * as Location from 'expo-location';
+import { useEffect } from 'react';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        console.error('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      dispatch(
+        setOrigin({
+          location: {
+            lat: location.coords.latitude,
+            lng: location.coords.longitude,
+          },
+          description: 'Current Location',
+        })
+      );
+    })();
+  }, []);
 
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
